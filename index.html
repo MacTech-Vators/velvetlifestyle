@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Handmade Candles | Home Fragrances</title>
+    <title>VELVET LIFESTYLE - Luxury Handmade Candles</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <a href="contact.html">Contact Us</a>
 </head>
 <body>
     <!-- Header -->
@@ -14,12 +14,16 @@
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
+                <li><a href="#catalog">Shop</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Collections</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <div class="cart-icon">
+            🛒
+            <div class="cart-count">0</div>
+        </div>
         <button class="mobile-menu-btn">☰</button>
     </header>
 
@@ -28,11 +32,33 @@
         <button class="close-menu">✕</button>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
+            <li><a href="#catalog">Shop</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Collections</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#contact-map">Contact</a></li>
         </ul>
+    </div>
+
+    <!-- Shopping Cart Panel -->
+    <div class="cart-panel">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart">✕</button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount">R0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+        <div class="empty-cart">
+            <p>Your cart is empty</p>
+            <a href="#catalog" class="btn">Start Shopping</a>
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -40,7 +66,7 @@
         <div class="hero-content">
             <h1>VELVET LIFESTYLE</h1>
             <h2>LUXURY HANDMADE CANDLES AND HOME FRAGRANCES</h2>
-            <a href="#" class="btn">Shop Now</a>
+            <a href="#catalog" class="btn">Shop Now</a>
             <a href="#" class="btn outline">Learn More</a>
         </div>
     </section>
@@ -74,32 +100,157 @@
         </div>
     </section>
 
+    <!-- Product Catalog Section -->
+    <section id="catalog" class="catalog-section">
+        <h2 class="section-title">Shop Our Collection</h2>
+        <p>Browse our carefully curated selection of luxury candles and home fragrances</p>
+        
+        <div class="catalog-tabs">
+            <div class="catalog-tab active" data-category="all">All Products</div>
+            <div class="catalog-tab" data-category="new">New Arrivals</div>
+            <div class="catalog-tab" data-category="bestseller">Best Sellers</div>
+            <div class="catalog-tab" data-category="gift">Gift Sets</div>
+        </div>
+        
+        <div class="catalog-products">
+            <!-- Product 1 -->
+            <div class="catalog-product" data-category="new bestseller">
+                <img src="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Gold Elegance Candle">
+                <div class="catalog-product-info">
+                    <div class="catalog-product-title">Gold Elegance</div>
+                    <div class="catalog-product-category">Luxury Collection</div>
+                    <div class="catalog-product-price">R400.00</div>
+                    <div class="catalog-product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="add-to-cart" data-id="1" data-name="Gold Elegance" data-price="400" data-image="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="catalog-product" data-category="new">
+                <img src="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp" alt="Ribbed Collection Candle">
+                <div class="catalog-product-info">
+                    <div class="catalog-product-title">Ribbed Collection</div>
+                    <div class="catalog-product-category">Premium Series</div>
+                    <div class="catalog-product-price">R500.00</div>
+                    <div class="catalog-product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="add-to-cart" data-id="2" data-name="Ribbed Collection" data-price="500" data-image="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="catalog-product" data-category="bestseller">
+                <img src="images/Ribbed candle holder.jpg" alt="Crystal Clear Candle">
+                <div class="catalog-product-info">
+                    <div class="catalog-product-title">Crystal Clear</div>
+                    <div class="catalog-product-category">Glass Collection</div>
+                    <div class="catalog-product-price">R600.00</div>
+                    <div class="catalog-product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="add-to-cart" data-id="3" data-name="Crystal Clear" data-price="600" data-image="images/Ribbed candle holder.jpg">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="catalog-product" data-category="gift">
+                <img src="images/Small tea light.jpg" alt="Mini Ambiance Set">
+                <div class="catalog-product-info">
+                    <div class="catalog-product-title">Mini Ambiance Set</div>
+                    <div class="catalog-product-category">Tea Light Collection</div>
+                    <div class="catalog-product-price">R300.00</div>
+                    <div class="catalog-product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="add-to-cart" data-id="4" data-name="Mini Ambiance Set" data-price="300" data-image="images/Small tea light.jpg">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="catalog-product" data-category="gift bestseller">
+                <img src="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Luxury Gift Box">
+                <div class="catalog-product-info">
+                    <div class="catalog-product-title">Luxury Gift Box</div>
+                    <div class="catalog-product-category">Premium Gift Set</div>
+                    <div class="catalog-product-price">R800.00</div>
+                    <div class="catalog-product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="add-to-cart" data-id="5" data-name="Luxury Gift Box" data-price="800" data-image="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="catalog-product" data-category="new">
+                <img src="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp" alt="Seasonal Spice">
+                <div class="catalog-product-info">
+                    <div class="catalog-product-title">Seasonal Spice</div>
+                    <div class="catalog-product-category">Limited Edition</div>
+                    <div class="catalog-product-price">R450.00</div>
+                    <div class="catalog-product-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn decrease">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn increase">+</button>
+                        </div>
+                        <button class="add-to-cart" data-id="6" data-name="Seasonal Spice" data-price="450" data-image="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured Products Section -->
     <section class="featured">
-        <h2 class="section-title">Our Signature Collection</h2>
-        <p>Handcrafted with the finest ingredients for a luxurious sensory experience</p>
+        <h2 class="section-title">Featured Collection</h2>
+        <p>Discover our most coveted handmade luxury candles, crafted to elevate your home</p>
         
         <div class="products">
             <div class="product">
-                <img src="images/DALL·E 2025-03-10 00.58.33 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Luxury Candle">
-                <h3>Marble Collection</h3>
-                <p>Premium soy wax with gold-plated lid</p>
-                <div class="price">R700.00</div>
-                <a href="#" class="btn">Add to Cart</a>
-            </div>
-            <div class="product">
-                <img src="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp" alt="Luxury Candle">
-                <h3>Golden Ribbed</h3>
-                <p>Metal container with premium wax</p>
+                <img src="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Signature Collection">
+                <h3>Signature Collection</h3>
+                <p>Our premium three-wick candle with 80+ hours of burn time</p>
                 <div class="price">R600.00</div>
-                <a href="#" class="btn">Add to Cart</a>
+                <button class="btn add-to-cart" data-id="7" data-name="Signature Collection" data-price="600" data-image="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp">Add to Cart</button>
             </div>
+            
             <div class="product">
-                <img src="images/Glass jar candle.jpg" alt="Luxury Candle">
-                <h3>Crystal Glass</h3>
-                <p>Clear glass with natural fragrance</p>
-                <div class="price">R600.00</div>
-                <a href="#" class="btn">Add to Cart</a>
+                <img src="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp" alt="Aromatherapy Blend">
+                <h3>Aromatherapy Blend</h3>
+                <p>Essential oil infused candles to enhance wellbeing</p>
+                <div class="price">R450.00</div>
+                <button class="btn add-to-cart" data-id="8" data-name="Aromatherapy Blend" data-price="450" data-image="images/DALL·E 2025-03-10 00.59.09 - A luxury handmade candle product showcase for a website. The image features a set of high-end candles in elegant glass jars with gold accents, placed .webp">Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <img src="images/Ribbed candle holder.jpg" alt="Luxury Gift Set">
+                <h3>Luxury Gift Set</h3>
+                <p>A curated selection of our most popular fragrances</p>
+                <div class="price">R900.00</div>
+                <button class="btn add-to-cart" data-id="9" data-name="Luxury Gift Set" data-price="900" data-image="images/Ribbed candle holder.jpg">Add to Cart</button>
             </div>
         </div>
     </section>
@@ -107,32 +258,36 @@
     <!-- Product Display Section -->
     <section class="product-display">
         <div class="product-image">
-            <img src="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Luxury Candle Collection">
+            <img src="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Luxury Candle">
         </div>
         <div class="product-details">
-            <h2>Experience True Luxury</h2>
-            <p>Our premium handcrafted candles are made with the finest ingredients to create a luxurious atmosphere in your home. Each candle is carefully poured and designed to provide a clean, long-lasting burn with captivating fragrances.</p>
+            <h2>The Velvet Experience</h2>
+            <p>Our premium candles are handcrafted using only the finest ingredients, ensuring a clean, long-lasting burn and exquisite fragrance that transforms your space.</p>
             
             <div class="features">
                 <div class="feature">
                     <div class="feature-icon">✓</div>
-                    <p>100% Natural Soy Wax</p>
+                    <div>Hand-poured in small batches</div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">✓</div>
-                    <p>Premium Essential Oils</p>
+                    <div>100% natural soy wax</div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">✓</div>
-                    <p>50+ Hour Burn Time</p>
+                    <div>Premium fragrance oils</div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">✓</div>
-                    <p>Eco-Friendly Materials</p>
+                    <div>Lead-free cotton wicks</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>Reusable luxury containers</div>
                 </div>
             </div>
             
-            <a href="#" class="btn">Shop the Collection</a>
+            <a href="#catalog" class="btn">Shop Collection</a>
         </div>
     </section>
 
@@ -142,35 +297,71 @@
         
         <div class="testimonial-slider">
             <div class="testimonial active">
-                <p>"These candles have transformed my living space. The scent is subtle yet captivating, and the elegant design complements my decor perfectly. I'm a customer for life!"</p>
-                <div class="testimonial-author">- Lebogang M.</div>
+                <p>"These candles are absolutely divine! The scent fills my entire home and creates such a warm, inviting atmosphere. I'm completely in love with the Velvet Lifestyle experience."</p>
+                <div class="testimonial-author">- Tharollo Sebe.</div>
             </div>
+            
             <div class="testimonial">
-                <p>"I've tried many luxury candle brands, but nothing compares to the quality and attention to detail of Velvet Lifestyle. Worth every penny."</p>
-                <div class="testimonial-author">- Thato T.</div>
+                <p>"I received the Luxury Gift Set as a housewarming present and now I'm obsessed. The quality is unmatched and the fragrances are sophisticated and long-lasting."</p>
+                <div class="testimonial-author">- Tharollo Sebe.</div>
             </div>
+            
             <div class="testimonial">
-                <p>"The perfect gift for anyone who appreciates luxury. The packaging is exquisite, and the fragrances are unique and sophisticated."</p>
-                <div class="testimonial-author">- Sinah R.</div>
+                <p>"As someone who is very particular about home scents, I can confidently say these are the best candles I've ever used. Worth every penny for the quality and elegant design."</p>
+                <div class="testimonial-author">- Tharollo Sebe.</div>
             </div>
             
             <div class="slider-dots">
-                <div class="dot active" data-index="0"></div>
-                <div class="dot" data-index="1"></div>
-                <div class="dot" data-index="2"></div>
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
             </div>
         </div>
     </section>
 
     <!-- Newsletter Section -->
     <section class="newsletter">
-        <h2>Join Our Velvet Family</h2>
-        <p>Subscribe to receive exclusive offers, early access to new collections, and fragrance inspiration for your home.</p>
+        <h2>Join Our Community</h2>
+        <p>Subscribe to receive exclusive offers, early access to new collections, and expert tips for creating your perfect ambiance.</p>
         
         <form class="newsletter-form">
-            <input type="email" placeholder="Your email address">
+            <input type="email" placeholder="Your email address" required>
             <button type="submit">Subscribe</button>
         </form>
+    </section>
+
+    <!-- Map Section -->
+    <section id="contact-map" class="map-section">
+        <h2 class="section-title">Visit Our Flagship Store</h2>
+        <p>Experience the Velvet Lifestyle in person at our flagship store where you can explore our complete collection and receive personalized assistance.</p>
+        
+        <div class="map-container">
+            <!-- Replace with your actual Google Maps embed code -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7152203584424!2d18.417492!3d-33.918861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc67a7abcefe71%3A0xd48f0368a9c84c4d!2sV%26A%20Waterfront%2C%20Cape%20Town%2C%208002%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1615554246072!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <div class="store-info">
+            <div class="store-info-item">
+                <div class="store-info-icon">📍</div>
+                <div class="store-info-title">Location</div>
+                <div>Waterfall, Shop 42</div>
+                <div>Johannesburg, South Africa</div>
+            </div>
+            
+            <div class="store-info-item">
+                <div class="store-info-icon">🕒</div>
+                <div class="store-info-title">Hours</div>
+                <div>Monday - Saturday: 9am - 7pm</div>
+                <div>Sunday: 10am - 5pm</div>
+            </div>
+            
+            <div class="store-info-item">
+                <div class="store-info-icon">📞</div>
+                <div class="store-info-title">Contact</div>
+                <div>+27 00000 000</div>
+                <div>hello@velvetlifestyle.com</div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -178,14 +369,14 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>VELVET LIFESTYLE</h3>
-                <p>Luxury handmade candles and home fragrances crafted with passion and attention to detail.</p>
+                <p>Luxury handmade candles and home fragrances crafted to transform your space into a sanctuary of elegance and comfort.</p>
                 <div class="social-links">
-                    <a href="#"><span>f</span></a>
-                    <a href="#"><span>in</span></a>
-                    <a href="#"><span>ig</span></a>
-                    <a href="#"><span>p</span></a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Pinterest</a>
                 </div>
             </div>
+            
             <div class="footer-column">
                 <h3>Shop</h3>
                 <ul>
@@ -195,30 +386,33 @@
                     <li><a href="#">Gift Sets</a></li>
                 </ul>
             </div>
+            
             <div class="footer-column">
-                <h3>Information</h3>
+                <h3>About</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Craftsmanship</a></li>
                     <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Our Process</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h3>Customer Care</h3>
-                <ul>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Care Instructions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
         </div>
+        
         <div class="copyright">
-            &copy; 2025 Velvet Lifestyle. All rights reserved.
+            <p>&copy; 2025 VELVET LIFESTYLE. All rights reserved.</p>
         </div>
     </footer>
 
-   
+    <script src="script.js"></script>
 </body>
 </html>

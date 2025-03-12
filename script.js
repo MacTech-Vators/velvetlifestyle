@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
             mobileMenu.classList.add('active');
         });
 
+        
+
         closeMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
@@ -61,4 +63,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener('scroll', checkScroll);
     window.addEventListener('load', checkScroll);
+
+    
+    // Contact Form Handling (only runs on contact page)
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    if (contactForm && formStatus) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulate form processing
+            formStatus.textContent = "Sending your message...";
+            formStatus.className = "form-status";
+            formStatus.style.display = "block";
+            
+            setTimeout(() => {
+                // Simulate successful submission
+                formStatus.textContent = "Thank you! Your message has been sent successfully.";
+                formStatus.className = "form-status success";
+                contactForm.reset(); // Clear form fields
+                
+                console.log("Form submitted with:", { name, email, message });
+            }, 1500);
+        });
+    }
+    
+    // Newsletter Form Handling (can be on any page)
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterStatus = document.getElementById('newsletterStatus');
+    
+    if (newsletterForm && newsletterStatus) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('newsletterEmail').value;
+            
+            // Simulate subscription processing
+            newsletterStatus.textContent = "Processing your subscription...";
+            newsletterStatus.className = "newsletter-status";
+            newsletterStatus.style.display = "block";
+            
+            setTimeout(() => {
+                // Simulate successful subscription
+                newsletterStatus.textContent = "Thank you for subscribing to our newsletter!";
+                newsletterStatus.className = "newsletter-status success";
+                newsletterForm.reset(); // Clear form field
+                
+                console.log("Newsletter subscription:", { email });
+            }, 1500);
+        });
+    }
+    
+    // Add any other JavaScript functionality for all pages here
 });
+
