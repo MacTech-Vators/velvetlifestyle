@@ -4,10 +4,548 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Velvet Lifestyle</title>
-    <link rel="stylesheet" href="styles.css">
-    <a href="index.html">Home</a>
-    
-   
+    <style>
+        /* Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        :root {
+    --primary-color: #b39069;
+    --secondary-color: #464646;
+    --light-color: #f8f5f2;
+    --dark-color: #333333;
+    --accent-color: #d4af7a;
+    --body-font: 'Montserrat', sans-serif;
+    --heading-font: 'Cormorant Garamond', serif;
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-secondary);
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: "";
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1.2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        /* Contact Sections */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-info section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-info h2 {
+            font-size: 1.8rem;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info h2:after {
+            left: 0;
+            transform: none;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info p svg,
+        .contact-info p img {
+            margin-right: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+      
+  .social-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-links a {
+    color: var(--light-color);
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+  
+  .social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+  }
+/* Footer social links */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 5rem 8% 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-column h3 {
+    font-family: var(--heading-font);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.footer-column p {
+    margin-bottom: 1.5rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-column ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 2rem;
+    color: #999;
+}
+        
+        .contact-form {
+            margin-top: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e0d6cc;
+            border-radius: 4px;
+            background-color: var(--light-color);
+            font-family: var(--font-secondary);
+            color: var(--dark-color);
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn, .whatsapp-btn, .subscribe-btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .submit-btn:hover, .whatsapp-btn:hover, .subscribe-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .form-status, .newsletter-status {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+        
+        .whatsapp-contact {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1rem;
+            background-color: #25D366;
+        }
+        
+        .whatsapp-btn svg {
+            margin-right: 0.5rem;
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 4rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form .form-group {
+            flex: 1;
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+        
+       /* Footer */
+       footer {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 60px 5% 20px;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .footer-column h3 {
+    color: var(--light-color);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  
+  .footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+  }
+  
+  .footer-column p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #aaa;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-column ul li a {
+    color: #aaa;
+    transition: var(--transition);
+  }
+  
+  .footer-column ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-links a {
+    color: var(--light-color);
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+  
+  .social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+  }
+  
+  .copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+  
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--dark-color);
+            }
+            
+            main {
+                padding: 3rem 1.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form .form-group {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info, .form-container, .newsletter {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: white;
+            padding: 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            margin-top: 3rem;
+        }
+        
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-menu ul li a {
+            display: block;
+            text-decoration: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -15,50 +553,133 @@
         <div class="logo">VELVET LIFESTYLE</div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="collection.html">Collections</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
     </header>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <button class="close-menu">✕</button>
+        <button class="close-menu" aria-label="Close menu">✕</button>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Collections</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
 
     <main>
-        <!-- Contact Section -->
-        <section class="contact-section" id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or inquiries, feel free to reach out to us!</p>
-            <form id="contactForm" class="contact-form">
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-            <div id="formStatus" class="form-status"></div>
-            <a href="https://wa.me/0670116275" class="whatsapp-btn">Chat with us on WhatsApp</a>
-        </section>
+        <h2>Contact Us</h2>
+        
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <section class="get-in-touch">
+                    <h2>Get in Touch</h2>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Waterfall, Shop 42,Johannesburg, South Africa
+                    </p>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <a href="mailto:contact@velvetlifestyle.com">contact@velvetlifestyle.com</a>
+                    </p>
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        +27 0000 0000
+                    </p>
+                    <p>Follow us on social media:</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/velvetlifestyle" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/velvetlifestyle" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://pinterest.com/velvetlifestyle" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="customer-support">
+                    <h2>Customer Support</h2>
+                    <p>For inquiries regarding your order, shipping, or product details, please reach out to us via email or fill out the contact form. We aim to respond within 24-48 hours.</p>
+                </section>
+
+                <section class="business-inquiries">
+                    <h2>Business Inquiries</h2>
+                    <p>Interested in partnering with Velvet Lifestyle or stocking our products in your store? Send us an email at  <a href="malito:wholesale@velvetlifestyle.com"> wholesale@velvetlifestyle.com </a> for more details. </p>
+                </section>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="form-container">
+                <h2>Send Us a Message</h2>
+                <p>If you have any questions or inquiries, feel free to reach out to us!</p>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="visually-hidden">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="visually-hidden">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="visually-hidden">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="visually-hidden">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div id="formStatus" class="form-status"></div>
+                <p class="whatsapp-contact">💌 We can't wait to hear from you!</p>
+                <a href="https://wa.me/+1234567890" class="whatsapp-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    Chat with us on WhatsApp
+                </a>
+            </div>
+        </div>
 
         <!-- Newsletter Section -->
         <section class="newsletter" id="newsletter">
             <h2>Stay Updated</h2>
             <p>Sign up for our newsletter and be the first to know about new candle launches, special offers, and more!</p>
             <form id="newsletterForm" class="newsletter-form">
-                <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
+                <div class="form-group">
+                    <label for="newsletterEmail" class="visually-hidden">Enter your email</label>
+                    <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="subscribe-btn">Subscribe</button>
             </form>
             <div id="newsletterStatus" class="newsletter-status"></div>
         </section>
@@ -71,37 +692,37 @@
                 <h3>VELVET LIFESTYLE</h3>
                 <p>Luxury handmade candles and home fragrances crafted to transform your space into a sanctuary of elegance and comfort.</p>
                 <div class="social-links">
-                    <a href="#">Instagram</a>
-                    <a href="#">Facebook</a>
-                    <a href="#">Pinterest</a>
+                    <a href="https://instagram.com/velvetlifestyle" target="_blank">Instagram</a>
+                    <a href="https://facebook.com/velvetlifestyle" target="_blank">Facebook</a>
+                    <a href="https://pinterest.com/velvetlifestyle" target="_blank">Pinterest</a>
                 </div>
             </div>
             
             <div class="footer-column">
                 <h3>Shop</h3>
                 <ul>
-                    <li><a href="#">All Products</a></li>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Best Sellers</a></li>
-                    <li><a href="#">Gift Sets</a></li>
+                    <li><a href="shop.html">All Products</a></li>
+                    <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    <li><a href="best-sellers.html">Best Sellers</a></li>
+                    <li><a href="gift-sets.html">Gift Sets</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Information</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Our Process</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="process.html">Our Process</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Customer Care</h3>
                 <ul>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Care Instructions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="shipping.html">Shipping & Returns</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="care.html">Care Instructions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -110,6 +731,28 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.add('active');
+        });
+        
+        document.querySelector('.close-menu').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.remove('active');
+        });
+        
+        // Form submission (just for demonstration)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('formStatus').textContent = 'Thank you for your message! We will get back to you soon.';
+            this.reset();
+        });
+        
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('newsletterStatus').textContent = 'Thank you for subscribing to our newsletter!';
+            this.reset();
+        });
+    </script>
 </body>
 </html>
