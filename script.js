@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Mobile Menu Toggle
+ 
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const closeMenuBtn = document.querySelector('.close-menu');
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Testimonial Slider
+  
     const testimonials = document.querySelectorAll('.testimonial');
     const dots = document.querySelectorAll('.dot');
     let currentIndex = 0;
@@ -37,14 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
             dot.addEventListener('click', () => showTestimonial(index));
         });
 
-        // Auto-rotate testimonials
+        
         setInterval(() => {
             let nextIndex = (currentIndex + 1) % testimonials.length;
             showTestimonial(nextIndex);
         }, 5000);
     }
 
-    // Product Animation on Scroll
+
     const products = document.querySelectorAll('.product');
 
     function checkScroll() {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('load', checkScroll);
 
     
-    // Contact Form Handling (only runs on contact page)
+    
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
 
@@ -77,23 +77,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
             
-            // Simulate form processing
+           
             formStatus.textContent = "Sending your message...";
             formStatus.className = "form-status";
             formStatus.style.display = "block";
             
             setTimeout(() => {
-                // Simulate successful submission
+                
                 formStatus.textContent = "Thank you! Your message has been sent successfully.";
                 formStatus.className = "form-status success";
-                contactForm.reset(); // Clear form fields
+                contactForm.reset(); 
                 
                 console.log("Form submitted with:", { name, email, message });
             }, 1500);
         });
     }
     
-    // Newsletter Form Handling (can be on any page)
+   
     const newsletterForm = document.getElementById('newsletterForm');
     const newsletterStatus = document.getElementById('newsletterStatus');
     
@@ -103,13 +103,13 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const email = document.getElementById('newsletterEmail').value;
             
-            // Simulate subscription processing
+            
             newsletterStatus.textContent = "Processing your subscription...";
             newsletterStatus.className = "newsletter-status";
             newsletterStatus.style.display = "block";
             
             setTimeout(() => {
-                // Simulate successful subscription
+                
                 newsletterStatus.textContent = "Thank you for subscribing to our newsletter!";
                 newsletterStatus.className = "newsletter-status success";
                 newsletterForm.reset(); // Clear form field
@@ -119,6 +119,83 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Add any other JavaScript functionality for all pages here
-});
+ 
+    const newArrivalsTab = document.querySelector('.catalog-tab[data-category="new"]');
+    const previewContainer = document.getElementById('new-arrivals-preview');
 
+    newArrivalsTab.addEventListener('mouseover', function() {
+        if (!previewContainer.innerHTML) {
+            fetch('new-arrivals.html')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const newArrivalsSection = doc.querySelector('.new-arrivals');
+                    if (newArrivalsSection) {
+                        previewContainer.innerHTML = newArrivalsSection.innerHTML;
+                    } else {
+                        previewContainer.innerHTML = '<p>Error loading preview.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading new arrivals preview:', error);
+                    previewContainer.innerHTML = '<p>Error loading preview.</p>';
+                });
+        }
+    })
+
+   
+    const bestSellersTab = document.querySelector('.catalog-tab[data-category="bestseller"]');
+    const bestSellersPreview = document.getElementById('best-sellers-preview');
+
+    if (bestSellersTab && bestSellersPreview) {
+        bestSellersTab.addEventListener('mouseover', function() {
+            if (!bestSellersPreview.innerHTML) {
+                fetch('best-sellers.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');
+                        const bestSellersSection = doc.querySelector('.best-sellers');
+                        if (bestSellersSection) {
+                            bestSellersPreview.innerHTML = bestSellersSection.innerHTML;
+                        } else {
+                            bestSellersPreview.innerHTML = '<p>Error loading preview.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading best sellers preview:', error);
+                        bestSellersPreview.innerHTML = '<p>Error loading preview.</p>';
+                    });
+            }
+        });
+    }
+
+    
+     const giftSetsTab = document.querySelector('.catalog-tab[data-category="gift"]');
+    const giftSetsPreview = document.getElementById('gift-sets-preview');
+
+    if (giftSetsTab && giftSetsPreview) {
+        giftSetsTab.addEventListener('mouseover', function() {
+            if (!giftSetsPreview.innerHTML) {
+                fetch('gift-sets.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');
+                        const giftSetsSection = doc.querySelector('.gift-sets');
+                        if (giftSetsSection) {
+                            giftSetsPreview.innerHTML = giftSetsSection.innerHTML;
+                        } else {
+                            giftSetsPreview.innerHTML = '<p>Error loading preview.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading gift sets preview:', error);
+                        giftSetsPreview.innerHTML = '<p>Error loading preview.</p>';
+                    });
+            }
+        });
+    }
+
+});

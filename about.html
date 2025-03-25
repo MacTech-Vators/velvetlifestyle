@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
+  
     <header>
         <div class="logo">VELVET LIFESTYLE</div>
         <nav>
@@ -19,14 +19,12 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div class="cart-icon">
-            🛒
-            <div class="cart-count">0</div>
+        
         </div>
         <button class="mobile-menu-btn">☰</button>
     </header>
 
-    <!-- Mobile Menu -->
+   
     <div class="mobile-menu">
         <button class="close-menu">✕</button>
         <ul>
@@ -38,7 +36,7 @@
         </ul>
     </div>
 
-    <!-- About Section -->
+   
     <section class="about">
         <h1>About Us</h1>
         <p>Welcome to Velvet Lifestyle, where luxury meets craftsmanship. Our handmade candles and home fragrances are designed to create a serene and elegant atmosphere in your home.</p>
@@ -61,55 +59,175 @@
             <li>✔ Aromatherapy Benefits – Scents that promote relaxation, focus, and well-being.</li>
         </ul>
 
-        <h2>Join the Velvet Lifestyle</h2>
-        <p>Indulge in a world of luxury fragrances that make every moment special. Explore our collections today and let scent transform your space.</p>
+        
     </section>
+    
+<section class="newsletter">
+    <div class="newsletter-container">
+        <h2>Join Our Community</h2>
+        <p>Subscribe to receive exclusive offers, early access to new collections, and expert tips for creating your perfect ambiance.</p>
+        
+        <form id="newsletterForm" action="mailto:your@company-email.com" method="post" enctype="text/plain">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <p id="newsletterStatus" class="status-message"></p>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>VELVET LIFESTYLE</h3>
-                <p>Luxury handmade candles and home fragrances crafted with passion and attention to detail.</p>
-                <div class="social-links">
-                    <a href="#"><span>f</span></a>
-                    <a href="#"><span>in</span></a>
-                    <a href="#"><span>ig</span></a>
-                    <a href="#"><span>p</span></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3>Shop</h3>
-                <ul>
-                    <li><a href="#">All Products</a></li>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Best Sellers</a></li>
-                    <li><a href="#">Gift Sets</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Information</h3>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Our Process</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Customer Care</h3>
-                <ul>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Care Instructions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
+<style>
+
+.newsletter {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 0; 
+}
+
+.newsletter-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.newsletter h2 {
+    color: #000000;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.newsletter p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+#newsletterForm {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#newsletterForm input[type="email"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+#newsletterForm button {
+    padding: 12px 25px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#newsletterForm button:hover {
+    background-color: #555;
+}
+
+.status-message {
+    margin-top: 15px;
+    color: green;
+    font-size: 14px;
+}
+
+
+@media (max-width: 600px) {
+    #newsletterForm {
+        flex-direction: column;
+    }
+    
+    #newsletterForm input[type="email"] {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    #newsletterForm button {
+        border-radius: 4px;
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    
+    e.preventDefault();
+    
+    
+    const email = this.querySelector('input[type="email"]').value;
+    
+    
+    document.getElementById('newsletterStatus').textContent = 'Thank you for subscribing to our newsletter!';
+    
+ 
+    this.reset();
+    
+  
+    window.location.href = `mailto:wholesale@velvetlifestyle.com?subject=Newsletter Subscription ${email}`;
+});
+</script>
+
+    
+
+
+    
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>VELVET LIFESTYLE</h3>
+            <p>Luxury handmade candles and home fragrances crafted to transform your space into a sanctuary of elegance and comfort.</p>
+            <div class="social-links">
+                <a href="instagram.html" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                <a href="facebook.html" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="pinterest.html" aria-label="Pinterest"><i class="fa fa-pinterest"></i></a>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Velvet Lifestyle. All rights reserved.
+        
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <ul>
+                <li><a href="all-products.html">All Products</a></li>
+                <li><a href="new-arrivals.html">New Arrivals</a></li>
+                <li><a href="best-sellers.html">Best Sellers</a></li>
+                <li><a href="gift-sets.html">Gift Sets</a></li>
+            </ul>
         </div>
-    </footer>
-    <script src="script.js"></script>
+        
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="our-story.html">Our Story</a></li>
+                <li><a href="craftsmanship.html">Craftsmanship</a></li>
+                <li><a href="sustainability.html">Sustainability</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="shipping-returns.html">Shipping & Returns</a></li>
+                <li><a href="care-guide.html">Care Guide</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; 2025 VELVET LIFESTYLE. All rights reserved.</p>
+    </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="script.js"></script>
 </body>
 </html>

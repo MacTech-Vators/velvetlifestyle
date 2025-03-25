@@ -4,7 +4,562 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collections | Velvet Lifestyle</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f7f5;
+        }
+        
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #b78d65;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #b78d65;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 60px;
+        }
+        
+        .mobile-menu ul li {
+            margin: 20px 0;
+        }
+        
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        /* Collection page styles */
+        .collection-section {
+            padding: 30px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 400;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .collection-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+        
+        /* Category navigation */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            margin: 0 10px 10px;
+            border: 1px solid #b78d65;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .category-nav a:hover, .category-nav a.active {
+            background-color: #b78d65;
+            color: white;
+        }
+        
+        /* Category styles */
+        .category-section {
+            margin-bottom: 60px;
+        }
+        
+        .category-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            color: #b78d65;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-name {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+        
+        .product-description {
+            margin: 0 0 15px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            margin: 0 0 15px;
+            color: #b78d65;
+        }
+        
+        .shop-button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #b78d65;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .shop-button:hover {
+            background-color: #a57b55;
+        }
+        
+        /* New tag */
+        .new-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #b78d65;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .bestseller-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #d4af37;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Product wrapper for tags */
+        .product-wrapper {
+            position: relative;
+        }
+        
+        /* Benefits section */
+        .benefits-section {
+            background-color: #f0ebe5;
+            padding: 40px 5%;
+            margin: 40px 0;
+        }
+        
+        .benefits-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .benefit-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .benefit-item:before {
+            content: "✓";
+            color: #b78d65;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 40px 5%;
+            background-color: #333;
+            color: white;
+        }
+        
+        .cta {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #b78d65;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #a57b55;
+        }
+        
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 5% 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #b78d65;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #b78d65;
+            .social-links a {
+    margin-right: 15px;
+    font-size: 24px;
+    color: #333;
+}
+
+.social-links a:hover {
+    color: #a87c50; /* Or whatever accent color matches your brand */
+}
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        /* Gift set styles */
+        .gift-set {
+            display: flex;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .gift-set-img {
+            width: 30%;
+            object-fit: cover;
+        }
+        
+        .gift-set-info {
+            padding: 20px;
+            width: 60%;
+        }
+        
+        .gift-set-name {
+            font-size: 22px;
+            margin: 0 0 15px;
+        }
+        
+        .gift-set-description {
+            margin: 0 0 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .gift-set-includes {
+            margin: 0 0 20px;
+            padding-left: 20px;
+        }
+        
+        .gift-set-includes li {
+            margin-bottom: 5px;
+        }
+        
+        .gift-set-price {
+            font-weight: 600;
+            margin: 0 0 20px;
+            color: #b78d65;
+            font-size: 18px;
+        }
+        
+        .gift-shop-button {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: #b78d65;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .gift-shop-button:hover {
+            background-color: #a57b55;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .gift-set {
+                flex-direction: column;
+            }
+            
+            .gift-set-img {
+                width: 100%;
+                height: 300px;
+            }
+            
+            .gift-set-info {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .hero-image {
+                height: 300px;
+            }
+            
+            .collection-description {
+                font-size: 16px;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-nav a {
+                margin: 5px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,108 +573,875 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div class="cart-icon">
-            🛒
-            <div class="cart-count">0</div>
-        </div>
+        
         <button class="mobile-menu-btn">☰</button>
     </header>
-
-    <!-- Mobile Menu -->
+    
     <div class="mobile-menu">
         <button class="close-menu">✕</button>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="#catalog">Shop</a></li>
+            <li><a href="shop.html">Shop</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="collections.html">Collections</a></li>
-            <li><a href="#contact-map">Contact</a></li>
+            <li><a href="collection.html">Collections</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
-    
-    <section class="collection-section">
-        <h2 class="section-title">Luxury Candle Collection</h2>
-        <!-- Hero Image or Banner -->
-        <div class="hero-image">
-            <!-- Add high-quality lifestyle image here -->
-            <img src="images/DALL·E 2025-03-10 00.58.33 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Luxury Candle in an elegant home setting" class="hero-img">
-            
-        </div>
-        <!-- Short Collection Description -->
-        <p class="collection-description">Discover the art of fine fragrance with our Luxury Candle Collection. Hand-poured with premium soy wax and infused with exquisite scents, each candle is designed to create a warm, inviting ambiance while complementing your home décor.</p>
-        <!-- Featured Products -->
-        <h3 class="featured-title">Featured Products</h3>
-        <div class="product">
-            <!-- Add high-quality product image here -->
-            <img src="images/Luxury Candle Collection.jpg" alt="Velvet Noir Candle" class="product-img">
-            <h4 class="product-name">🕯 Velvet Noir</h4>
-            <p class="product-description">A deep, sensual blend of amber, vanilla, and musk. Perfect for cozy evenings.</p>
-            <p class="product-price">Price: R200.00</p>
-            <button class="shop-button">Add to cart</button>
-        </div>
-        <div class="product">
-            <!-- Add high-quality product image here -->
-            <img src="images/Ribbed candle holder.jpg" alt="Golden Serenity Candle" class="product-img">
-            <h4 class="product-name">🕯 Golden Serenity</h4>
-            <p class="product-description">A refreshing mix of citrus, jasmine, and sandalwood. Ideal for a spa-like retreat.</p>
-            <p class="product-price">Price: R300.00</p>
-            <button class="shop-button">Add to cart</button>
-        </div>
-        <!-- Benefits & Unique Selling Points -->
-        <h3 class="benefits-title">Benefits & Unique Selling Points</h3>
-        <ul class="benefits-list">
-            <li class="benefit-item">Premium Soy Wax – Cleaner, longer burn with no toxins.</li>
-            <li class="benefit-item">Exquisite Fragrance Blends – Thoughtfully crafted for a luxurious scent experience.</li>
-            <li class="benefit-item">Elegant Design – Stylish jars that complement any home décor.</li>
-        </ul>
-        <!-- Call to Action (CTA) -->
-        <p class="cta">Transform your home with the perfect candle. Shop the collection now!</p>
-    </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>VELVET LIFESTYLE</h3>
-                <p>Luxury handmade candles and home fragrances crafted with passion and attention to detail.</p>
-                <div class="social-links">
-                    <a href="#"><span>f</span></a>
-                    <a href="#"><span>in</span></a>
-                    <a href="#"><span>ig</span></a>
-                    <a href="#"><span>p</span></a>
+    <main>
+        <section class="collection-section">
+            <h1 class="section-title">Our Collections</h1>
+            
+            <div class="hero-image">
+                <img src="images/DALL·E 2025-03-10 00.58.29 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Velvet Lifestyle Collection" class="hero-img">
+            </div>
+            
+            <p class="collection-description">
+                Explore our curated collections of luxury home fragrances, bath products, and accessories. 
+                Each item is carefully crafted with premium ingredients to bring comfort and elegance to your everyday life.
+            </p>
+            
+            <div class="category-nav">
+                <a href="#new-arrivals" class="active">New Arrivals</a>
+                <a href="#bestsellers">Bestsellers</a>
+                <a href="#gift-sets">Gift Sets</a>
+                <a href="#all-products">All Products</a>
+            </div>
+            
+            <!-- New Arrivals Section -->
+            <div id="new-arrivals" class="category-section">
+                <h2 class="category-title">New Arrivals</h2>
+                <div class="product-grid">
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/image1.webp" alt="Lavender Dreams Candle" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Lavender Dreams Candle</h3>
+                                <p class="product-description">Soothing lavender with hints of vanilla and cedarwood. 50-hour burn time.</p>
+                                <p class="product-price">R300.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="new-tag">NEW</span>
+                    </div>
+                    
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/image2.webp" alt="Midnight Jasmine Diffuser" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Midnight Jasmine Diffuser</h3>
+                                <p class="product-description">Elegant jasmine blended with rose and sandalwood. 3-month fragrance.</p>
+                                <p class="product-price">R400.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="new-tag">NEW</span>
+                    </div>
+                    
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/Luxury Candle Collection.jpg" alt="Sea Salt & Sage Bath Soak" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Sea Salt & Sage Bath Soak</h3>
+                                <p class="product-description">Refreshing blend of sea salt, sage, and eucalyptus. 10 baths per jar.</p>
+                                <p class="product-price">R500.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="new-tag">NEW</span>
+                    </div>
+                    
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/Glass jar candle.jpg" alt="Amber & Oud Room Spray" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Amber & Oud Room Spray</h3>
+                                <p class="product-description">Rich amber and oud with subtle hints of vanilla and musk.</p>
+                                <p class="product-price">R200.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="new-tag">NEW</span>
+                    </div>
                 </div>
             </div>
-            <div class="footer-column">
-                <h3>Shop</h3>
-                <ul>
-                    <li><a href="#">All Products</a></li>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Best Sellers</a></li>
-                    <li><a href="#">Gift Sets</a></li>
-                </ul>
+            
+            <!-- Bestsellers Section -->
+            <div id="bestsellers" class="category-section">
+                <h2 class="category-title">Bestsellers</h2>
+                <div class="product-grid">
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/Luxury Candle Collection.jpg" alt="Vanilla & Cedarwood Candle" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Vanilla & Cedarwood Candle</h3>
+                                <p class="product-description">Warm vanilla with woody cedarwood notes. 45-hour burn time.</p>
+                                <p class="product-price">R300.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="bestseller-tag">BESTSELLER</span>
+                    </div>
+                    
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/Ribbed candle holder.jpg" alt="Linen & Cotton Reed Diffuser" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Linen & Cotton Reed Diffuser</h3>
+                                <p class="product-description">Fresh linen and cotton with subtle floral notes. 4-month fragrance.</p>
+                                <p class="product-price">R500.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="bestseller-tag">BESTSELLER</span>
+                    </div>
+                    
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/Small tea light.jpg" alt="Citrus Grove Body Scrub" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Citrus Grove Body Scrub</h3>
+                                <p class="product-description">Invigorating blend of citrus oils with natural exfoliants.</p>
+                                <p class="product-price">R600.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="bestseller-tag">BESTSELLER</span>
+                    </div>
+                    
+                    <div class="product-wrapper">
+                        <div class="product">
+                            <img src="images/DALL·E 2025-03-10 00.58.33 - A high-quality background image showcasing luxury handmade candles and home fragrances. The scene features an elegant candle display with soft lightin.webp" alt="Coconut & Shea Hand Cream" class="product-img">
+                            <div class="product-info">
+                                <h3 class="product-name">Coconut & Shea Hand Cream</h3>
+                                <p class="product-description">Nourishing coconut oil and shea butter for silky soft hands.</p>
+                                <p class="product-price">R220.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <span class="bestseller-tag">BESTSELLER</span>
+                    </div>
+                </div>
             </div>
-            <div class="footer-column">
-                <h3>Information</h3>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Our Process</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
+            
+            <!-- Gift Sets Section -->
+            <div id="gift-sets" class="category-section">
+                <h2 class="category-title">Gift Sets</h2>
+                
+                <div class="gift-set">
+                    <img src="images/image3.webp" alt="Luxury Candle Gift Set" class="gift-set-img">
+                    <div class="gift-set-info">
+                        <h3 class="gift-set-name">Luxury Candle Gift Set</h3>
+                        <p class="gift-set-description">A perfect gift for candle lovers. This set includes three of our most popular scented candles packaged in an elegant gift box.</p>
+                        <ul class="gift-set-includes">
+                            <li>Lavender Dreams Candle (8oz)</li>
+                            <li>Vanilla & Cedarwood Candle (8oz)</li>
+                            <li>Amber & Oud Candle (8oz)</li>
+                        </ul>
+                        <p class="gift-set-price">700.00 <span style="text-decoration: line-through; color: #999; font-size: 16px;">R800.00</span></p>
+                        <button class="gift-shop-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="gift-set">
+                    <img src="images/Glass jar candle.jpg" alt="Home Spa Collection" class="gift-set-img">
+                    <div class="gift-set-info">
+                        <h3 class="gift-set-name">Home Spa Collection</h3>
+                        <p class="gift-set-description">Transform your bathroom into a luxury spa with this complete collection of bath and body products.</p>
+                        <ul class="gift-set-includes">
+                            <li>Sea Salt & Sage Bath Soak (16oz)</li>
+                            <li>Citrus Grove Body Scrub (8oz)</li>
+                            <li>Coconut & Shea Hand Cream (4oz)</li>
+                            <li>Lavender Dreams Candle (4oz)</li>
+                        </ul>
+                        <p class="gift-set-price">R200.00 <span style="text-decoration: line-through; color: #999; font-size: 16px;">R400.00</span></p>
+                        <button class="gift-shop-button">Add to Cart</button>
+                    </div>
+                </div>
             </div>
-            <div class="footer-column">
-                <h3>Customer Care</h3>
-                <ul>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Care Instructions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+            
+            <!-- All Products Section -->
+            <div id="all-products" class="category-section">
+                <h2 class="category-title">All Products</h2>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product">
+                        <img src="images/Luxury Candle Collection.jpg" alt="Lavender Dreams Candle" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Lavender Dreams Candle</h3>
+                            <p class="product-description">Soothing lavender with hints of vanilla and cedarwood. 50-hour burn time.</p>
+                            <p class="product-price">R400.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product">
+                        <img src="images/Small tea light.jpg" alt="Midnight Jasmine Diffuser" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Midnight Jasmine Diffuser</h3>
+                            <p class="product-description">Elegant jasmine blended with rose and sandalwood. 3-month fragrance.</p>
+                            <p class="product-price">R500.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product">
+                        <img src="images/Glass jar candle.jpg" alt="Sea Salt & Sage Bath Soak" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Sea Salt & Sage Bath Soak</h3>
+                            <p class="product-description">Refreshing blend of sea salt, sage, and eucalyptus. 10 baths per jar.</p>
+                            <p class="product-price">R500.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product">
+                        <img src="images/image3.webp" alt="Amber & Oud Room Spray" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Amber & Oud Room Spray</h3>
+                            <p class="product-description">Rich amber and oud with subtle hints of vanilla and musk.</p>
+                            <p class="product-price">R450.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product">
+                        <img src="images/image3.webp" alt="Vanilla & Cedarwood Candle" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Vanilla & Cedarwood Candle</h3>
+                            <p class="product-description">Warm vanilla with woody cedarwood notes. 45-hour burn time.</p>
+                            <p class="product-price">R300.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product">
+                        <img src="images/image2.webp" alt="Linen & Cotton Reed Diffuser" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Linen & Cotton Reed Diffuser</h3>
+                            <p class="product-description">Fresh linen and cotton with subtle floral notes. 4-month fragrance.</p>
+                            <p class="product-price">R700.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="product">
+                        <img src="images/Glass jar candle.jpg" alt="Citrus Grove Body Scrub" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-name">Citrus Grove Body Scrub</h3>
+                            <p class="product-description">Invigorating blend of citrus oils with natural exfoliants.</p>
+                            <p class="product-price">R500.00</p>
+                            <button class="shop-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="product">
+                        <img src="images/Ribbed candle holder.jpg" alt="Coconut & Shea Hand Cream" class="product-img">
+                        <div class="product-info">
+                            <div class="product-info">
+                                <h3 class="product-name">Coconut & Shea Hand Cream</h3>
+                                <p class="product-description">Nourishing coconut oil and shea butter for silky soft hands.</p>
+                                <p class="product-price">R200.00</p>
+                                <button class="shop-button">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Benefits Section -->
+            <section class="benefits-section">
+                <h2 class="benefits-title">Why Choose Velvet Lifestyle</h2>
+                <ul class="benefits-list">
+                    <li class="benefit-item">Premium ingredients sourced from ethical suppliers</li>
+                    <li class="benefit-item">Hand-poured and crafted in small batches</li>
+                    <li class="benefit-item">Eco-friendly packaging and sustainable practices</li>
+                    <li class="benefit-item">Cruelty-free and vegan products</li>
+                    <li class="benefit-item">Free shipping on orders over R150</li>
+                    <li class="benefit-item">30-day satisfaction guarantee</li>
                 </ul>
+            </section>
+            
+            <div id="cart-popup" class="cart-popup">
+                <div class="cart-popup-content">
+                    <div class="cart-popup-header">
+                        <h3>Cart</h3>
+                        <button id="close-cart" class="close-cart">×</button>
+                    </div>
+            
+                    <div id="cart-items" class="cart-items">
+                        <!-- Cart items will be dynamically added here -->
+                    </div>
+            
+                    <div class="cart-summary">
+                        <div class="cart-total">
+                            <span>Total:</span>
+                            <span id="cart-total-price">R0.00</span>
+                        </div>
+                        <div class="cart-buttons">
+                            <button class="view-cart-button">View Cart</button>
+                            <button class="checkout-button">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add this notification element for "Added to cart" messages -->
+            <div id="add-notification" class="add-notification">
+                <div class="notification-content">
+                    <span class="notification-check">✓</span>
+                    <span id="notification-text">Item added to your cart!</span>
+                </div>
+            </div>
+            
+            <style>
+            /* Cart Popup Styles */
+            .cart-popup {
+                position: fixed;
+                top: 0;
+                right: -400px;
+                width: 380px;
+                height: 100%;
+                background-color: white;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1001;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+            }
+            
+            .cart-popup.active {
+                right: 0;
+            }
+            
+            .cart-popup-content {
+                padding: 20px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .cart-popup-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .cart-popup-header h3 {
+                margin: 0;
+                font-size: 22px;
+                color: #333;
+            }
+            
+            .close-cart {
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #666;
+            }
+            
+            .cart-items {
+                flex: 1;
+                overflow-y: auto;
+                margin-bottom: 20px;
+            }
+            
+            .cart-item {
+                display: flex;
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .cart-item-image {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                margin-right: 15px;
+                border-radius: 4px;
+            }
+            
+            .cart-item-details {
+                flex: 1;
+            }
+            
+            .cart-item-name {
+                margin: 0 0 5px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            
+            .cart-item-price {
+                color: #b78d65;
+                margin: 0 0 10px;
+                font-weight: 500;
+            }
+            
+            .cart-item-controls {
+                display: flex;
+                align-items: center;
+            }
+            
+            .quantity-control {
+                display: flex;
+                align-items: center;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            
+            .quantity-btn {
+                background: none;
+                border: none;
+                padding: 5px 10px;
+                font-size: 16px;
+                cursor: pointer;
+                background-color: #f9f9f9;
+            }
+            
+            .quantity-value {
+                padding: 0 10px;
+                min-width: 20px;
+                text-align: center;
+            }
+            
+            .remove-item {
+                margin-left: auto;
+                background: none;
+                border: none;
+                color: #999;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            
+            .remove-item:hover {
+                color: #d9534f;
+            }
+            
+            .cart-summary {
+                margin-top: auto;
+                padding-top: 15px;
+                border-top: 1px solid #eee;
+            }
+            
+            .cart-total {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+                font-size: 18px;
+                font-weight: 500;
+            }
+            
+            .cart-buttons {
+                display: flex;
+                gap: 10px;
+            }
+            
+            .view-cart-button, .checkout-button {
+                flex: 1;
+                padding: 12px 0;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                text-align: center;
+                transition: background-color 0.3s;
+            }
+            
+            .view-cart-button {
+                background-color: #fff;
+                color: #333;
+                border: 1px solid #ddd;
+            }
+            
+            .view-cart-button:hover {
+                background-color: #f5f5f5;
+            }
+            
+            .checkout-button {
+                background-color: #b78d65;
+                color: white;
+            }
+            
+            .checkout-button:hover {
+                background-color: #a57b55;
+            }
+            
+            .empty-cart-message {
+                text-align: center;
+                padding: 30px 0;
+                color: #999;
+            }
+            
+            /* Overlay for when cart is open */
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 1000;
+                display: none;
+            }
+            
+            /* Add to cart notification styles */
+            .add-notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #fff;
+                border-left: 4px solid #b78d65;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                padding: 15px 20px;
+                border-radius: 4px;
+                z-index: 1002;
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .add-notification.active {
+                transform: translateX(0);
+            }
+            
+            .notification-content {
+                display: flex;
+                align-items: center;
+            }
+            
+            .notification-check {
+                color: #b78d65;
+                font-size: 18px;
+                margin-right: 10px;
+            }
+            
+            /* Responsive styles */
+            @media (max-width: 480px) {
+                .cart-popup {
+                    width: 100%;
+                    right: -100%;
+                }
+            }
+            </style>
+            
+        </main>
+        
+       <!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>VELVET LIFESTYLE</h3>
+            <p>Luxury handmade candles and home fragrances crafted to transform your space into a sanctuary of elegance and comfort.</p>
+            <div class="social-links">
+                <a href="instagram.html" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                <a href="facebook.html" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="pinterest.html" aria-label="Pinterest"><i class="fa fa-pinterest"></i></a>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Velvet Lifestyle. All rights reserved.
+        
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <ul>
+                <li><a href="all-products.html">All Products</a></li>
+                <li><a href="new-arrivals.html">New Arrivals</a></li>
+                <li><a href="best-sellers.html">Best Sellers</a></li>
+                <li><a href="gift-sets.html">Gift Sets</a></li>
+            </ul>
         </div>
-    </footer>
-    <script src="script.js"></script>
-</body>
-</html>
+        
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Craftsmanship</a></li>
+                <li><a href="about.html">Sustainability</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="shipping-returns.html">Shipping & Returns</a></li>
+                <li><a href="care-guide.html">Care Guide</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; 2025 VELVET LIFESTYLE. All rights reserved.</p>
+    </div>
+</footer>
+
+<
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="script.js"></script>
+    
+        <script>
+           
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMenuBtn = document.querySelector('.close-menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.style.display = 'block';
+            });
+            
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.style.display = 'none';
+            });
+            
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                   
+                    document.querySelectorAll('.category-nav a').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        </script>
+        
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+ 
+        const cartPopup = document.getElementById('cart-popup');
+        const closeCartBtn = document.getElementById('close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+        const addToCartButtons = document.querySelectorAll('.shop-button, .gift-shop-button');
+        const addNotification = document.getElementById('add-notification');
+        const notificationText = document.getElementById('notification-text');
+        
+       
+        let cart = [];
+        
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+        
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+               
+                const productElement = this.closest('.product') || this.closest('.gift-set');
+                const name = productElement.querySelector('.product-name') ? 
+                              productElement.querySelector('.product-name').textContent :
+                              productElement.querySelector('.gift-set-name').textContent;
+                
+                const priceText = productElement.querySelector('.product-price') ? 
+                                   productElement.querySelector('.product-price').textContent :
+                                   productElement.querySelector('.gift-set-price').textContent.split(' ')[0];
+                
+                const price = parseFloat(priceText.replace('R', ''));
+                
+                const imgElement = productElement.querySelector('.product-img') || 
+                                   productElement.querySelector('.gift-set-img');
+                const imgSrc = imgElement ? imgElement.getAttribute('src') : 'images/image3.jpg';
+                
+                
+                addToCart(name, price, imgSrc);
+                
+              
+                notificationText.textContent = `${name} added to your cart!`;
+                addNotification.classList.add('active');
+                
+            
+                setTimeout(() => {
+                    addNotification.classList.remove('active');
+                }, 3000);
+            });
+        });
+        
+       
+        function addToCart(name, price, imgSrc) {
+           
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    imgSrc: imgSrc,
+                    quantity: 1
+                });
+            }
+            
+            
+            updateCartDisplay();
+        }
+        
+        
+        function updateCartDisplay() {
+           
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart-message">Your cart is empty</div>';
+                cartTotalPrice.textContent = 'R0.00';
+                return;
+            }
+            
+          
+            let total = 0;
+            
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <img src="${item.imgSrc}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-name">${item.name}</h4>
+                        <p class="cart-item-price">R${item.price.toFixed(2)}</p>
+                        <div class="cart-item-controls">
+                            <div class="quantity-control">
+                                <button class="quantity-btn decrease" data-index="${index}">-</button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn increase" data-index="${index}">+</button>
+                            </div>
+                            <button class="remove-item" data-index="${index}">Remove</button>
+                        </div>
+                    </div>
+                `;
+                
+                cartItems.appendChild(itemElement);
+            });
+            
+           
+            cartTotalPrice.textContent = `R${total.toFixed(2)}`;
+            
+        
+            document.querySelectorAll('.decrease').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                        updateCartDisplay();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.increase').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart[index].quantity++;
+                    updateCartDisplay();
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCartDisplay();
+                });
+            });
+        }
+        
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (cart.length === 1) {
+                    openCart();
+                }
+            });
+        });
+        
+        
+        function openCart() {
+            cartPopup.classList.add('active');
+            overlay.style.display = 'block';
+        }
+        
+        
+        function closeCart() {
+            cartPopup.classList.remove('active');
+            overlay.style.display = 'none';
+        }
+        
+        // Event listener for close cart button
+        closeCartBtn.addEventListener('click', closeCart);
+        
+        overlay.addEventListener('click', closeCart);
+        
+        
+        updateCartDisplay();
+        
+       
+        const cartIcon = document.querySelector('.cart-icon');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', openCart);
+        }
+        
+      
+        document.querySelector('.view-cart-button').addEventListener('click', function() {
+           
+            alert('Successfully added to the cart');
+        });
+        
+        document.querySelector('.checkout-button').addEventListener('click', function() {
+            
+            alert('Succefully added to the checkout');
+
+            
+        });
+
+      
+document.querySelector('.view-cart-button').addEventListener('click', function() {
+   navigateToPaymentGateway('view');
+});
+
+document.querySelector('.checkout-button').addEventListener('click', function() {
+   navigateToPaymentGateway('checkout');
+});
+
+function navigateToPaymentGateway(mode) {
+   
+    const cartData = {
+        items: cart,
+        totalAmount: calculateTotal(),
+        mode: mode 
+    };
+    
+    
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+    
+    
+    window.location.href = 'paymentgateway.html';
+}
+
+
+function calculateTotal() {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+}
+    });
+    </script>
+    </body>
+    </html>

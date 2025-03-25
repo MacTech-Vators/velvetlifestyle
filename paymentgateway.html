@@ -349,6 +349,7 @@
     <div class="container">
         <header>
             <button class="back-button" onclick="returnToShop()">Back to Shop</button>
+            <button class="back-button" onclick="returnToCollections()">Back to Collections</button>
             <h1>Checkout</h1>
         </header>
         
@@ -459,27 +460,26 @@
         </div>
     </div>
     
-    <!-- Success Modal -->
-    <div class="modal-overlay" id="success-modal-overlay">
-        <div class="success-modal"><div class="success-modal">
-            <div class="success-icon">✓</div>
-            <h2 class="success-title">Payment Successful!</h2>
-            <p class="success-message">Your order has been processed successfully. Order confirmation has been sent to your email.</p>
-            <p>Order #: <span class="order-number">ORD-12345678</span></p>
-            <button class="btn" onclick="closeModal()">Continue Shopping</button>
-        </div>
+   
+<div class="modal-overlay" id="success-modal-overlay">
+    <div class="success-modal">
+        <div class="success-icon">✓</div>
+        <h2 class="success-title">Payment Successful!</h2>
+        <p class="success-message">Your order has been processed successfully. Order confirmation has been sent to your email.</p>
+        <p>Order #: <span class="order-number">ORD-12345678</span></p>
+        <button class="btn" onclick="closeModal()">Continue Shopping</button>
     </div>
+</div>
     
     <script>
-        // Load cart items from localStorage
+        
 function loadCartItems() {
     const container = document.getElementById('summary-items');
     if (!container) return;
     
-    // Clear existing items
+   
     container.innerHTML = '';
-    
-    // Get cart from localStorage
+   
     const savedCart = localStorage.getItem('shoppingCart');
     let cartItems = [];
     
@@ -487,7 +487,7 @@ function loadCartItems() {
         cartItems = JSON.parse(savedCart);
     }
     
-    // If cart is empty, show message
+   
     if (cartItems.length === 0) {
         container.innerHTML = '<div class="empty-cart-message">Your cart is empty</div>';
         updateSummary(0);
@@ -520,12 +520,12 @@ function loadCartItems() {
     updateSummary(subtotal);
 }
 
-// Update summary totals
+
 function updateSummary(subtotal) {
     document.getElementById('subtotal').textContent = `R${subtotal.toFixed(2)}`;
     
     const shipping = subtotal > 0 ? 5.00 : 0.00;
-    const tax = subtotal * 0.08; // Assuming 8% tax
+    const tax = subtotal * 0.08; 
     const total = subtotal + shipping + tax;
     
     document.getElementById('shipping').textContent = `R${shipping.toFixed(2)}`;
@@ -533,36 +533,34 @@ function updateSummary(subtotal) {
     document.getElementById('total').textContent = `R${total.toFixed(2)}`;
 }
 
-// Select payment method
 function selectPaymentMethod(element, method) {
-    // Remove active class from all methods
+    
     document.querySelectorAll('.payment-method').forEach(item => {
         item.classList.remove('active');
     });
     
-    // Add active class to selected method
+    
     element.classList.add('active');
     
-    // Hide all payment details
     document.querySelectorAll('.payment-method-details').forEach(item => {
         item.style.display = 'none';
     });
     
-    // Show selected payment details
+
     const paymentElement = document.getElementById(method + '-payment');
     if (paymentElement) {
         paymentElement.style.display = 'block';
     }
 }
 
-// Generate random order number
+
 function generateOrderNumber() {
     const prefix = "ORD-";
     const randomNum = Math.floor(10000000 + Math.random() * 90000000);
     return prefix + randomNum;
 }
 
-// Form submission
+
 function setupFormSubmission() {
     const form = document.getElementById('payment-form');
     if (!form) return;
@@ -570,7 +568,7 @@ function setupFormSubmission() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Basic form validation
+       
         const requiredFields = form.querySelectorAll('[required]');
         let isValid = true;
         
@@ -588,38 +586,42 @@ function setupFormSubmission() {
             return;
         }
         
-        // Set order number
         const orderNumberElement = document.querySelector('.order-number');
         if (orderNumberElement) {
             orderNumberElement.textContent = generateOrderNumber();
         }
         
-        // Show success modal
+
         const modal = document.getElementById('success-modal-overlay');
         if (modal) {
             modal.style.display = 'flex';
         }
         
-        // Clear cart after successful checkout
+        
         localStorage.removeItem('shoppingCart');
     });
 }
 
-// Close modal and return to shop
 function closeModal() {
     const modal = document.getElementById('success-modal-overlay');
     if (modal) {
         modal.style.display = 'none';
     }
+    console.log("Redirecting to shop.html"); 
     window.location.href = "shop.html";
+
 }
 
-// Return to shop
+
 function returnToShop() {
     window.location.href = "shop.html";
 }
 
-// Initialize
+function returnToCollections() {
+    window.location.href = "collection.html";
+}
+
+
 window.onload = function() {
     loadCartItems();
     setupFormSubmission();

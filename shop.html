@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop | Velvet Lifestyle</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -34,11 +35,72 @@
             padding: 20px;
         }
         
+        /* Navigation Styles */
+        nav {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            font-family: var(--heading-font);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-size: 16px;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-menu li a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--secondary-color);
+        }
+        
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         .page-title {
@@ -71,6 +133,63 @@
             font-family: var(--body-font);
         }
         
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: var(--body-font);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Featured Section */
+        .featured-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-family: var(--heading-font);
+            color: var(--secondary-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: -2px;
+            left: 0;
+        }
+        
+     
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -84,10 +203,23 @@
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            position: relative;
         }
         
         .product-card:hover {
             transform: translateY(-5px);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
         }
         
         .product-image {
@@ -138,6 +270,13 @@
         
         .add-to-cart:hover {
             background-color: var(--accent-color);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--secondary-color);
         }
         
         /* Cart Styles */
@@ -296,6 +435,86 @@
             font-family: var(--body-font);
         }
         
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+     
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 5rem 8% 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-column h3 {
+    font-family: var(--heading-font);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.footer-column p {
+    margin-bottom: 1.5rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-column ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 2rem;
+    color: #999;
+}
         /* Responsive */
         @media (max-width: 768px) {
             .products-grid {
@@ -303,6 +522,27 @@
             }
             .cart-sidebar {
                 width: 300px;
+            }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
             }
         }
         
@@ -313,21 +553,32 @@
             .cart-sidebar {
                 width: 100%;
             }
+            .category-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            .category-btn {
+                width: 80%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">VELVET LIFESTYLE</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="collection.html">Collections</a></li>
-                <li><a href="contact.html">Contact</a></li>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Velvet Lifestyle</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">HOME</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="collection.html">COLLECTIONS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
     <div class="container">
         <header>
             <h1 class="page-title">Shop Collection</h1>
@@ -336,12 +587,47 @@
             </div>
         </header>
         
-        <div class="products-grid" id="products-grid">
-            <!-- Products will be loaded here by JavaScript -->
+        
+        <div class="category-nav">
+            <button class="category-btn active" data-category="all">All Products</button>
+            <button class="category-btn" data-category="best">Best Products</button>
+            <button class="category-btn" data-category="new">New Arrivals</button>
+            <button class="category-btn" data-category="gifts">Best Gifts</button>
+        </div>
+        
+      
+        <div class="featured-section" id="best-products-section">
+            <h2 class="section-title">Best Products</h2>
+            <div class="products-grid" id="best-products-grid">
+               
+            </div>
+        </div>
+        
+        <div class="featured-section" id="new-arrivals-section">
+            <h2 class="section-title">New Arrivals</h2>
+            <div class="products-grid" id="new-arrivals-grid">
+                
+            </div>
+        </div>
+        
+       
+        <div class="featured-section" id="best-gifts-section">
+            <h2 class="section-title">Best Gifts</h2>
+            <div class="products-grid" id="best-gifts-grid">
+                
+            </div>
+        </div>
+        
+       
+        <div class="featured-section" id="all-products-section">
+            <h2 class="section-title">All Products</h2>
+            <div class="products-grid" id="all-products-grid">
+                
+            </div>
         </div>
     </div>
     
-    <!-- Cart Sidebar -->
+  
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
@@ -349,9 +635,9 @@
             <button class="close-cart" onclick="toggleCart()">✕</button>
         </div>
         <div class="cart-items" id="cart-items">
-            <!-- Cart items will be loaded here by JavaScript -->
+           
         </div>
-        <div class="cart-summary">
+        <div<div class="cart-summary">
             <div class="cart-total">
                 <span>Total:</span>
                 <span id="cart-total">R0.00</span>
@@ -361,61 +647,84 @@
     </div>
     
     <script>
-// Sample product data - in a real implementation, this would come from your database
+
 const products = [
     {
         id: 1,
         title: "Small tea light",
         price: 499.99,
         description: "High-quality product with premium features. Perfect for everyday use.",
-        image: "images/Small tea light.jpg"
+        image: "images/Small tea light.jpg",
+        category: ["best", "gifts"],
+        badge: "Best Seller",
+        isNew: false
     },
     {
         id: 2,
         title: "Peace love candle",
         price: 29.99,
         description: "Affordable option with excellent performance. Great value for money.",
-        image: "images/Glass jar candle.jpg"
+        image: "images/Glass jar candle.jpg",
+        category: ["gifts"],
+        badge: null,
+        isNew: true
     },
     {
         id: 3,
         title: "Ribbed candle holder",
         price: 399.99,
         description: "Premium product with exclusive features. The best choice for professionals.",
-        image: "images/Ribbed candle holder.jpg"
+        image: "images/Ribbed candle holder.jpg",
+        category: ["best"],
+        badge: "Premium",
+        isNew: false
     },
     {
         id: 4,
         title: "Luxury Candle ",
         price: 199.99,
         description: "Budget-friendly option that doesn't compromise on quality. A customer favorite.",
-        image: "images/Luxury Candle Collection.jpg"
+        image: "images/Luxury Candle Collection.jpg",
+        category: ["best", "gifts"],
+        badge: "Popular",
+        isNew: true
     },
     {
         id: 5,
         title: "Glass jar candle",
         price: 599.99,
         description: "Mid-range product with outstanding features. Perfect balance of price and performance.",
-        image: "images/Glass jar candle.jpg"
+        image: "images/Glass jar candle.jpg",
+        category: ["best"],
+        badge: null,
+        isNew: true
     },
     {
         id: 6,
         title: "Small tea light",
         price: 399.99,
         description: "Special edition product with unique design. Limited availability.",
-        image: "images/Small tea light.jpg"
+        image: "images/Small tea light.jpg",
+        category: ["gifts"],
+        badge: "Limited Edition",
+        isNew: false
     }
+    
 ];
 
 // Cart data
 let cart = [];
+let currentCategory = 'all';
 
-// Initialize the shop
+
 function initShop() {
-    // Load products
-    displayProducts();
+   
+    displayFeaturedProducts();
     
-    // Load cart from local storage
+    
+    setupCategoryFilters();
+    
+  
     const savedCart = localStorage.getItem('shoppingCart');
     if (savedCart) {
         cart = JSON.parse(savedCart);
@@ -423,18 +732,116 @@ function initShop() {
     }
 }
 
-// Display products in the grid
-function displayProducts() {
-    const productsGrid = document.getElementById('products-grid');
-    productsGrid.innerHTML = '';
+function setupCategoryFilters() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
     
-    products.forEach(product => {
-        // Use placeholder image if product image is missing
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+         
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+        
+            this.classList.add('active');
+            
+           
+            currentCategory = this.getAttribute('data-category');
+            
+            
+            toggleSections(currentCategory);
+        });
+    });
+    
+  
+    toggleSections('all');
+}
+
+
+function toggleSections(category) {
+    const sections = [
+        document.getElementById('best-products-section'),
+        document.getElementById('new-arrivals-section'),
+        document.getElementById('best-gifts-section'),
+        document.getElementById('all-products-section')
+    ];
+    
+    if (category === 'all') {
+       
+        sections.forEach(section => section.style.display = 'block');
+    } else {
+       
+        sections.forEach(section => section.style.display = 'none');
+        
+        if (category === 'best') {
+            document.getElementById('best-products-section').style.display = 'block';
+        } else if (category === 'new') {
+            document.getElementById('new-arrivals-section').style.display = 'block';
+        } else if (category === 'gifts') {
+            document.getElementById('best-gifts-section').style.display = 'block';
+        }
+        
+        
+        document.getElementById('all-products-section').style.display = 'block';
+    }
+}
+
+
+function displayFeaturedProducts() {
+   
+    const bestProductsGrid = document.getElementById('best-products-grid');
+    const bestProducts = products.filter(product => product.category.includes('best'));
+    
+    if (bestProducts.length === 0) {
+        bestProductsGrid.innerHTML = '<div class="empty-state">No best products available at the moment.</div>';
+    } else {
+        displayProducts(bestProductsGrid, bestProducts);
+    }
+    
+  
+    const newArrivalsGrid = document.getElementById('new-arrivals-grid');
+    const newArrivals = products.filter(product => product.isNew);
+    
+    if (newArrivals.length === 0) {
+        newArrivalsGrid.innerHTML = '<div class="empty-state">No new arrivals available at the moment.</div>';
+    } else {
+        displayProducts(newArrivalsGrid, newArrivals);
+    }
+    
+   
+    const bestGiftsGrid = document.getElementById('best-gifts-grid');
+    const bestGifts = products.filter(product => product.category.includes('gifts'));
+    
+    if (bestGifts.length === 0) {
+        bestGiftsGrid.innerHTML = '<div class="empty-state">No gift items available at the moment.</div>';
+    } else {
+        displayProducts(bestGiftsGrid, bestGifts);
+    }
+ 
+    const allProductsGrid = document.getElementById('all-products-grid');
+    displayProducts(allProductsGrid, products);
+}
+
+
+function displayProducts(gridElement, productList) {
+    gridElement.innerHTML = '';
+    
+    productList.forEach(product => {
+        
         const imageUrl = product.image || 'https://via.placeholder.com/200x200?text=Product+Image';
         
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
+        
+       
+        const badgeHTML = product.badge ? 
+            `<div class="product-badge">${product.badge}</div>` : '';
+        
+       
+        const newBadgeHTML = product.isNew ? 
+            `<div class="product-badge" style="background-color: #e74c3c;">New</div>` : '';
+        
         productCard.innerHTML = `
+            ${badgeHTML}
+            ${product.isNew && !product.badge ? newBadgeHTML : ''}
             <div class="product-image" style="background-image: url('${imageUrl}')"></div>
             <div class="product-info">
                 <h3 class="product-title">${product.title}</h3>
@@ -443,11 +850,11 @@ function displayProducts() {
                 <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
             </div>
         `;
-        productsGrid.appendChild(productCard);
+        gridElement.appendChild(productCard);
     });
 }
 
-// Add a product to the cart
+
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -483,7 +890,7 @@ function updateQuantity(productId, change) {
     
     cartItem.quantity += change;
     
-    // Remove item if quantity is 0
+    
     if (cartItem.quantity <= 0) {
         cart = cart.filter(item => item.id !== productId);
     }
@@ -566,26 +973,26 @@ function checkout() {
     window.location.href = "paymentgateway.html";
 }
 
-// Show notification
+
 function showNotification(message) {
-    // Remove any existing notifications
+    
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         document.body.removeChild(existingNotification);
     }
     
-    // Create new notification
+    
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.textContent = message;
     document.body.appendChild(notification);
     
-    // Show notification with animation
+    
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
     
-    // Hide notification after 3 seconds
+   
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
@@ -594,10 +1001,65 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Initialize the shop when the page loads
+
 window.addEventListener('DOMContentLoaded', function() {
     initShop();
 });
     </script>
+  
+<footer>
+    
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>VELVET LIFESTYLE</h3>
+            <p>Luxury handmade candles and home fragrances crafted to transform your space into a sanctuary of elegance and comfort.</p>
+            <div class="social-links">
+                <a href="instagram.html" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                <a href="facebook.html" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                <a href="pinterest.html" aria-label="Pinterest"><i class="fa fa-pinterest"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <ul>
+                <li><a href="all-products.html">All Products</a></li>
+                <li><a href="new-arrivals.html">New Arrivals</a></li>
+                <li><a href="best-sellers.html">Best Sellers</a></li>
+                <li><a href="gift-sets.html">Gift Sets</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Craftsmanship</a></li>
+                <li><a href="about.html">Sustainability</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="shipping-returns.html">Shipping & Returns</a></li>
+                <li><a href="care-guide.html">Care Guide</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; 2025 VELVET LIFESTYLE. All rights reserved.</p>
+    </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="script.js"></script>
+
 </body>
 </html>
