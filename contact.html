@@ -88,9 +88,10 @@
             margin: 0 auto;
             padding: 4rem 2rem;
         }
-       ace: nowrap;
+       /*ace{nowrap;
             border: 0;
-        
+            } 
+        */
         
         /* Map Section */
         .map-section {
@@ -301,11 +302,14 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="collection.html">Collections</a></li>
+                <li><a href="collections.html">Collections</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span class="cart-count">0</span>
+        </div>
     </header>
 
     <!-- Mobile Menu -->
