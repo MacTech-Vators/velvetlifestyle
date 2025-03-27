@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 newsletterStatus.textContent = "Thank you for subscribing to our newsletter!";
                 newsletterStatus.className = "newsletter-status success";
-                newsletterForm.reset(); // Clear form field
+                newsletterForm.reset(); 
                 
                 console.log("Newsletter subscription:", { email });
             }, 1500);

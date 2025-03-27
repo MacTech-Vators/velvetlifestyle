@@ -20,11 +20,7 @@
             </ul>
         </nav>
         
-        </div>
-        <button class="mobile-menu-btn">☰</button>
-        <div class="cart-icon" onclick="toggleCart()">
-            🛒 <span class="cart-count">0</span>
-        </div>
+        
     </header>
 
    
@@ -231,6 +227,22 @@ document.getElementById('newsletterForm').addEventListener('submit', function(e)
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script src="script.js"></script>
+<script>
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+       
+        e.preventDefault();
+        
+        
+        const email = this.querySelector('input[type="email"]').value;
+     
+        document.getElementById('newsletterStatus').textContent = 'Thank you for subscribing to our newsletter!';
+        
+    
+        this.reset();
+        
+  
+        window.location.href = `mailto:wholesale.velvet@gmail.com?subject=Newsletter Subscription&body=Please add this email address to your newsletter: ${email}`;
+    });
+    </script>
 </body>
 </html>

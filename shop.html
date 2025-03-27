@@ -732,7 +732,7 @@ const products = [
     
 ];
 
-// Cart data
+
 let cart = [];
 let currentCategory = 'all';
 
@@ -893,17 +893,17 @@ function addToCart(productId) {
         });
     }
     
-    // Save cart to local storage
+    
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
     
-    // Update cart display
+   
     updateCartDisplay();
     
-    // Show notification
+    
     showNotification(`${product.title} added to cart!`);
 }
 
-// Update quantity of a cart item
+
 function updateQuantity(productId, change) {
     const cartItem = cart.find(item => item.id === productId);
     if (!cartItem) return;
@@ -915,14 +915,13 @@ function updateQuantity(productId, change) {
         cart = cart.filter(item => item.id !== productId);
     }
     
-    // Save cart to local storage
+   
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
     
-    // Update cart display
     updateCartDisplay();
 }
 
-// Update the cart display
+
 function updateCartDisplay() {
     const cartItems = document.getElementById('cart-items');
     const cartCount = document.querySelector('.cart-count');
@@ -963,7 +962,7 @@ function updateCartDisplay() {
     cartTotal.textContent = `R${total.toFixed(2)}`;
 }
 
-// Toggle cart visibility
+
 function toggleCart() {
     const cartSidebar = document.getElementById('cart-sidebar');
     const cartOverlay = document.getElementById('cart-overlay');
@@ -979,17 +978,17 @@ function toggleCart() {
     }
 }
 
-// Checkout process
+
 function checkout() {
     if (cart.length === 0) {
         showNotification('Your cart is empty!');
         return;
     }
     
-    // Save cart to local storage before redirecting
+    
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
     
-    // Redirect to checkout page
+    
     window.location.href = "paymentgateway.html";
 }
 
